@@ -9,3 +9,5 @@ const socketall = (socket) => {
         socket.broadcast.emit('imgFileBase64', img);
     });
 };
+
+module.exports = socketall;
