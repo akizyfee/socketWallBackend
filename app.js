@@ -8,13 +8,6 @@ const dotenv = require('dotenv');
 
 const resError = require('./service/resError');
 
-var server = http.createServer(app);
-var io = require('socket.io')(server, {cors: {origin:'*'}});
-app.use(function(req, res, next){
-  res.io = io;
-  next();
-});
-
 
 dotenv.config({path: './config.env'});
 const DB = process.env.DATABASE.replace('<password>', process.env.DATABASE_PASSWORD);
@@ -39,6 +32,12 @@ app.use('/posts', postRouter);
 app.use('/users', userRouter);
 app.use('/upload', uploadRouter);
 
+var server = http.createServer(app);
+var io = require('socket.io')(server, {cors: {origin:'*'}});
+app.use(function(req, res, next){
+  res.io = io;
+  next();
+});
 
 app.use(function (err, req, res, next) {
   // dev
