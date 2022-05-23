@@ -8,7 +8,7 @@ const dotenv = require('dotenv');
 
 const resError = require('./service/resError');
 
-const socketall = require('../socket/server')
+const socketall = require('./socket/index')
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
