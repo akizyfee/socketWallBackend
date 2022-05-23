@@ -16,6 +16,7 @@ mongoose.connect(DB).then(() => {
 
 var postRouter = require('./routes/posts');
 var userRouter = require('./routes/users');
+const uploadRouter = require('./routes/upload');
 
 var app = express();
 app.use(cors());
@@ -28,7 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/posts', postRouter);
 app.use('/users', userRouter);
-
+app.use('/upload', uploadRouter);
 
 
 app.use(function (err, req, res, next) {
