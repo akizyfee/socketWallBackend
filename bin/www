@@ -26,11 +26,6 @@ var server = http.createServer(app);
  */
 const { Server } = require('socket.io');
 const io = new Server(server, {cors: {origin:'*'}});
-const socketall = require('../socket/server')
-io.on('connection', (socket) => {
-  console.log('來人囉');
-  socketall(socket);
-});
 
 server.listen(port);
 server.on('error', onError);
