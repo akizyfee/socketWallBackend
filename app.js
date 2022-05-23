@@ -8,6 +8,14 @@ const dotenv = require('dotenv');
 
 const resError = require('./service/resError');
 
+var server = http.createServer(app);
+var io = require('socket.io')(server, {cors: {origin:'*'}});
+app.use(function(req, res, next){
+  res.io = io;
+  next();
+});
+
+
 dotenv.config({path: './config.env'});
 const DB = process.env.DATABASE.replace('<password>', process.env.DATABASE_PASSWORD);
 mongoose.connect(DB).then(() => {

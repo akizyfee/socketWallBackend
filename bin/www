@@ -19,16 +19,16 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+// var server = http.createServer(app);
 
-const socketall = require('../socket/index')
-const { Server } = require("socket.io");
-const io = new Server(server, {cors: {origin:'*'}});
+// const socketall = require('../socket/index')
+// const { Server } = require("socket.io");
+// const io = new Server(server, {cors: {origin:'*'}});
 
-io.on('connection', (socket) => {
-  console.log('來人囉');
-  socketall(socket);
-});
+// io.on('connection', (socket) => {
+//   console.log('來人囉');
+//   socketall(socket);
+// });
 /**
  * Listen on provided port, on all network interfaces.
  */
