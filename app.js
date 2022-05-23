@@ -8,11 +8,6 @@ const dotenv = require('dotenv');
 
 const resError = require('./service/resError');
 
-const socketall = require('./socket/index')
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
-
-
 dotenv.config({path: './config.env'});
 const DB = process.env.DATABASE.replace('<password>', process.env.DATABASE_PASSWORD);
 mongoose.connect(DB).then(() => {
@@ -38,11 +33,6 @@ app.use(function(req, res, next){
 app.use('/posts', postRouter);
 app.use('/users', userRouter);
 app.use('/upload', uploadRouter);
-
-io.on('connection', (socket) => {
-  console.log('來人囉');
-  socketall(socket);
-});
 
 
 app.use(function (err, req, res, next) {
