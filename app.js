@@ -19,6 +19,10 @@ var userRouter = require('./routes/users');
 const uploadRouter = require('./routes/upload');
 
 var app = express();
+app.use(function(req, res, next){
+  res.io = io;
+  next();
+});
 app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
@@ -31,12 +35,6 @@ app.use('/posts', postRouter);
 app.use('/users', userRouter);
 app.use('/upload', uploadRouter);
 
-var server = require('http').Server(app);
-var io = require('socket.io')(server, {cors: {origin:'*'}});
-app.use(function(req, res, next){
-  res.io = io;
-  next();
-});
 
 app.use(function (err, req, res, next) {
   // dev
