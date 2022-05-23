@@ -32,7 +32,7 @@ app.use('/posts', postRouter);
 app.use('/users', userRouter);
 app.use('/upload', uploadRouter);
 
-var server = http.createServer(app);
+var server = require('http').Server(app);
 var io = require('socket.io')(server, {cors: {origin:'*'}});
 app.use(function(req, res, next){
   res.io = io;
