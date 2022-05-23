@@ -8,6 +8,11 @@ const dotenv = require('dotenv');
 
 const resError = require('./service/resError');
 
+const socketall = require('../socket/server')
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+
+
 dotenv.config({path: './config.env'});
 const DB = process.env.DATABASE.replace('<password>', process.env.DATABASE_PASSWORD);
 mongoose.connect(DB).then(() => {
@@ -25,17 +30,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(function(req, res, next){
+  res.io = io;
+  next();
+});
 
 app.use('/posts', postRouter);
 app.use('/users', userRouter);
 app.use('/upload', uploadRouter);
 
-const socketall = require('../socket/server')
 io.on('connection', (socket) => {
   console.log('來人囉');
   socketall(socket);
 });
+
 
 app.use(function (err, req, res, next) {
   // dev
