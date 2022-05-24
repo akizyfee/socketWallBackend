@@ -27,7 +27,7 @@ const uploadFiles = {
         });
         handleSuccess(res, '資料讀取成功', { url: response.data.link });
         const socket = res.io;
-        socket.emit("imgSend", '這是一串廢話');
+        socket.emit("imgSend", response.data.link);
     })
 }
 
