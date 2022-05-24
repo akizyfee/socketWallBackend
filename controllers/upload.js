@@ -27,7 +27,9 @@ const uploadFiles = {
             album: process.env.IMGUR_ALBUM_ID
         });
         handleSuccess(res, '資料讀取成功', { url: response.data.link });
-        // res.io.emit("imgSend", response.data.link);
+        const io = req.io;
+        console.log(io)
+        io.socket.emit("imgSend", response.data.link);
     })
 }
 
