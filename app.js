@@ -14,11 +14,19 @@ mongoose.connect(DB).then(() => {
   console.log('連線資料庫成功');
 })
 
-var postRouter = require('./routes/posts');
-var userRouter = require('./routes/users');
+const postRouter = require('./routes/posts');
+const userRouter = require('./routes/users');
 const uploadRouter = require('./routes/upload');
 
-var app = express();
+const app = express();
+const io = require('socket.io')();
+app.io = io
+require('./socket/index')(io);
+app.use(function(req, res, next){
+  res.io = io;
+  next();
+})
+
 app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
