@@ -5,14 +5,14 @@ const logger = require('morgan');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const io = require('socket.io')
+const { Socket } = require('socket.io')
 
 const resError = require('./service/resError');
 
 dotenv.config({path: './config.env'});
 const DB = process.env.DATABASE.replace('<password>', process.env.DATABASE_PASSWORD);
 mongoose.connect(DB).then(() => {
-  console.log(io)
+  console.log(Socket)
   console.log('連線資料庫成功');
 })
 
