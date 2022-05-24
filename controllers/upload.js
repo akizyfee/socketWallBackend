@@ -4,7 +4,6 @@ const handleErrorAsync = require('../service/handleErrorAsync');
 const handleSuccess = require('../service/handleSuccess');
 const sizeOf = require('image-size')
 const { ImgurClient } = require('imgur');
-const { Socket } = require('socket.io')
 
 const uploadFiles = {
     uploadFile: handleErrorAsync(async (req, res, next) => {
@@ -27,7 +26,8 @@ const uploadFiles = {
             album: process.env.IMGUR_ALBUM_ID
         });
         handleSuccess(res, '資料讀取成功', { url: response.data.link });
-        Socket.emit("imgSend", response.data.link);
+        var io = req.app.get('socket.io');
+        io.emit("imgSend", response.data.link);
     })
 }
 
