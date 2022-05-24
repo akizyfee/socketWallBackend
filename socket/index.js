@@ -5,5 +5,8 @@ module.exports = async (io) => {
         socket.on('chat message', (msg) => {
             socket.broadcast.emit('chat message', msg);
         });
+        socket.on('imgSend', (msg) => {
+            socket.broadcast.emit('imgSend', msg);
+        });
     });
 }
