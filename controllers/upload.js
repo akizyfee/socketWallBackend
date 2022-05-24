@@ -4,7 +4,7 @@ const handleErrorAsync = require('../service/handleErrorAsync');
 const handleSuccess = require('../service/handleSuccess');
 const sizeOf = require('image-size')
 const { ImgurClient } = require('imgur');
-const { io } = require('socket.io')
+const io = require('socket.io')
 const socket = io()
 
 const uploadFiles = {
