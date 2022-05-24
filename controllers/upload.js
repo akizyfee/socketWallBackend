@@ -27,9 +27,7 @@ const uploadFiles = {
         });
         handleSuccess(res, '資料讀取成功', { url: response.data.link });
         const socket = res.io;
-        socket.on('imgSend', (msg) => {
-            socket.broadcast.emit('imgSend', response.data.link);
-        });
+        socket.broadcast.emit('imgSend', response.data.link);
     })
 }
 
