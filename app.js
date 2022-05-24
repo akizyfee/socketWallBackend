@@ -5,6 +5,7 @@ const logger = require('morgan');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const io = require('socket.io')
 
 const resError = require('./service/resError');
 
