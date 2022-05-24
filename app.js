@@ -12,14 +12,13 @@ const resError = require('./service/resError');
 dotenv.config({path: './config.env'});
 const DB = process.env.DATABASE.replace('<password>', process.env.DATABASE_PASSWORD);
 mongoose.connect(DB).then(() => {
-  console.log(io);
+  console.log(io)
   console.log('連線資料庫成功');
 })
 
 var postRouter = require('./routes/posts');
 var userRouter = require('./routes/users');
 const uploadRouter = require('./routes/upload');
-const { constructSubredditGalleryUrl } = require('imgur/lib/gallery');
 
 var app = express();
 app.use(cors());
