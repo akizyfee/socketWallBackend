@@ -5,14 +5,12 @@ const logger = require('morgan');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const { Socket } = require('socket.io')
 
 const resError = require('./service/resError');
 
 dotenv.config({path: './config.env'});
 const DB = process.env.DATABASE.replace('<password>', process.env.DATABASE_PASSWORD);
 mongoose.connect(DB).then(() => {
-  console.log(Socket)
   console.log('連線資料庫成功');
 })
 
@@ -22,10 +20,6 @@ const uploadRouter = require('./routes/upload');
 
 var app = express();
 app.use(cors());
-app.use(function(req, res, next) {
-  req.io = io;
-  next();
-});
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
