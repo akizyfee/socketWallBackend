@@ -26,7 +26,7 @@ const uploadFiles = {
             album: process.env.IMGUR_ALBUM_ID
         });
         handleSuccess(res, '資料讀取成功', { url: response.data.link });
-        var io = req.app.get('socket.io');
+        var io = req.app.get('socketio');
         io.emit("imgSend", response.data.link);
     })
 }

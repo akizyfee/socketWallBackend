@@ -19,7 +19,7 @@ var userRouter = require('./routes/users');
 const uploadRouter = require('./routes/upload');
 
 var app = express();
-app.set('socket.io', io);
+app.set('socketio', io);
 app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
