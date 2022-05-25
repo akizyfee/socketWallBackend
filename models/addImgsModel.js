@@ -16,6 +16,7 @@ const addImgSchema = new mongoose.Schema(
     },
     {
         versionKey: false,
+        new: true,
     }
 );
 const addImgs = mongoose.model('imglibery', addImgSchema);
