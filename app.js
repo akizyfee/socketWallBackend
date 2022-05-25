@@ -17,6 +17,7 @@ mongoose.connect(DB).then(() => {
 const postRouter = require('./routes/posts');
 const userRouter = require('./routes/users');
 const uploadRouter = require('./routes/upload');
+const addImgRouter = require('./routes/addImg');
 
 const app = express();
 const io = require('socket.io')();
@@ -38,6 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/posts', postRouter);
 app.use('/users', userRouter);
 app.use('/upload', uploadRouter);
+app.use('/addImg', addImgRouter);
 
 
 app.use(function (err, req, res, next) {
