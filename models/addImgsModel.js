@@ -6,7 +6,7 @@ const addImgSchema = new mongoose.Schema(
         },
         img: {
             type: String,
-            default: ""
+            default: []
         },
         createdAt: {
             type: Date,
